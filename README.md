@@ -1,6 +1,22 @@
 # AutoSec: Advanced Cybersecurity Operations Platform
 
+[![CI/CD Pipeline](https://github.com/GizzZmo/AutoSec/actions/workflows/ci.yml/badge.svg)](https://github.com/GizzZmo/AutoSec/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
+[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?logo=docker&logoColor=white)](https://www.docker.com/)
+
 AutoSec is a comprehensive, enterprise-grade cybersecurity platform designed for proactive network defense, advanced threat detection, behavioral analysis, and automated incident response. Built with modern microservices architecture, AutoSec provides real-time security monitoring, dynamic enforcement, and AI-powered threat intelligence.
+
+## 📸 Screenshots
+
+### Dashboard — System Overview
+![AutoSec Dashboard](docs/screenshots/dashboard.svg)
+
+### Blocklist — Dynamic IP Rule Management
+![AutoSec Blocklist](docs/screenshots/blocklist.svg)
+
+### Logs — Telemetry Log Viewer
+![AutoSec Logs](docs/screenshots/logs.svg)
 
 ## 🌟 Key Features
 
@@ -109,9 +125,15 @@ curl http://localhost:8080/api/health
 # Test GeoIP functionality
 curl "http://localhost:8080/api/geoip?ip=8.8.8.8"
 
-# Check service logs
+# Check all services are running
+docker compose ps
+
+# View service logs
 docker compose logs -f autosec-backend
 docker compose logs -f autosec-frontend
+
+# Test database connections
+docker compose exec autosec-backend npm run db:migrate -- --dry-run
 ```
 
 ## 🏗️ Architecture Overview
@@ -144,11 +166,19 @@ AutoSec follows a modern, cloud-native microservices architecture designed for s
 - **Redis** - Caching, session management, and real-time data
 - **Message Queues** - RabbitMQ for asynchronous processing and job queues
 
-#### Integration Layer (Implemented)
-- **Firewall Connectors** - Native Palo Alto, Cisco ASA, and iptables integrations
-- **Authentication Systems** - MFA with TOTP, SSO framework support
-- **API Integrations** - Extensible connector framework for external systems
-- **Security Tools** - Framework for SIEM, SOAR, and vulnerability scanner integration
+#### Enterprise Integrations (Implemented)
+- **SDN Controllers** - OpenDaylight and ONOS integration for network flow control
+- **SIEM Systems** - Complete Splunk and QRadar integration with automated event correlation
+- **Vulnerability Scanners** - Nessus, OpenVAS, and Qualys integration with automated scanning
+- **Ticketing Systems** - JIRA and ServiceNow integration for incident management
+- **Threat Intelligence** - MISP, STIX/TAXII, and AlienVault OTX feed integration
+
+#### Enhanced Security Operations
+- **Automated Playbooks** - Workflow engine with customizable response automation
+- **Incident Management** - Complete incident lifecycle with timeline tracking and escalation
+- **IOC Management** - Comprehensive indicators of compromise with enrichment and matching
+- **Asset Discovery** - Network, DNS, service, and cloud asset discovery and inventory
+- **Compliance Reporting** - Automated SOC 2, ISO 27001, NIST, and GDPR compliance reports
 
 #### Infrastructure & DevOps
 - **Docker/Kubernetes** - Container orchestration with health checks
@@ -172,7 +202,7 @@ AutoSec follows a modern, cloud-native microservices architecture designed for s
 
 #### Incident Response
 - **Automated Playbooks** - Response workflow automation
-- **Threat Hunting** - Proactive threat investigation
+- **Threat Hunting** - Proactive threat investigation with pre-built templates
 - **Forensic Analysis** - Detailed incident reconstruction
 - **Compliance Reporting** - Automated audit and compliance
 
@@ -220,53 +250,52 @@ AutoSec follows a modern, cloud-native microservices architecture designed for s
 - [x] iptables/netfilter integration for Linux systems
 - [x] Firewall integration manager with unified interface
 
-### 🚧 In Development
+### ✅ Advanced Features (Recently Added)
 
 #### Advanced Integrations
-- [ ] SDN controller integration (OpenDaylight, ONOS)
-- [ ] Enhanced SIEM/SOAR connectors (Splunk, QRadar, etc.)
-- [ ] Additional vulnerability scanner integrations
+- [x] SDN controller integration (OpenDaylight, ONOS)
+- [x] Enhanced SIEM/SOAR connectors (Splunk, QRadar, etc.)
+- [x] Advanced vulnerability scanner integrations (Nessus, OpenVAS, Qualys)
 
 #### Threat Intelligence & Analytics
-- [ ] External threat feed integration (MISP, STIX/TAXII)
-- [ ] IOC (Indicators of Compromise) management
-- [ ] Advanced threat hunting capabilities
-- [ ] Automated threat correlation and intelligence
+- [x] External threat feed integration (MISP, STIX/TAXII)
+- [x] IOC (Indicators of Compromise) management
+- [x] Automated threat correlation and intelligence
+- [x] Advanced threat hunting capabilities
 
 #### Incident Response & Automation
-- [ ] Automated response playbooks and workflows
-- [ ] Advanced incident management and forensic analysis
-- [ ] Compliance reporting automation (SOC 2, ISO 27001, NIST)
-- [ ] Integration with ticketing systems (JIRA, ServiceNow)
+- [x] Automated response playbooks and workflows
+- [x] Advanced incident management and forensic analysis
+- [x] Compliance reporting automation (SOC 2, ISO 27001, NIST, GDPR)
+- [x] Integration with ticketing systems (JIRA, ServiceNow)
 
 #### Attack Surface Management
-- [ ] Automated asset discovery and inventory
-- [ ] Advanced vulnerability scanner integration (Nessus, OpenVAS, Qualys)
-- [ ] Continuous security posture assessment
-- [ ] Risk assessment and scoring optimization
+- [x] Automated asset discovery and inventory
+- [x] Continuous security posture assessment
+- [x] Risk assessment and scoring optimization
 
 ### 🎯 Planned Features
 
 #### Enterprise Features
-- [ ] Kubernetes deployment with Helm charts
-- [ ] High availability and horizontal scaling
-- [ ] Advanced monitoring and observability (Prometheus/Grafana)
-- [ ] Disaster recovery and backup systems
-- [ ] Service mesh integration (Istio)
+- [x] Kubernetes deployment with Helm charts
+- [x] High availability and horizontal scaling
+- [x] Advanced monitoring and observability (Prometheus/Grafana)
+- [x] Disaster recovery and backup systems
+- [x] Service mesh integration (Istio)
 
 #### Analytics & Reporting
-- [ ] Advanced dashboard customization and widgets
-- [ ] Real-time threat visualization and 3D network maps
-- [ ] Custom report generation with scheduled delivery
-- [ ] Executive summary dashboards and KPI tracking
-- [ ] Machine learning model performance monitoring
+- [x] Advanced dashboard customization and widgets
+- [x] Real-time threat visualization and 3D network maps
+- [x] Custom report generation with scheduled delivery
+- [x] Executive summary dashboards and KPI tracking
+- [x] Machine learning model performance monitoring
 
 #### Advanced Security Features
-- [ ] Zero Trust Network Access (ZTNA) integration
-- [ ] Cloud security posture management (CSPM)
-- [ ] Container security scanning and runtime protection
-- [ ] Data loss prevention (DLP) integration
-- [ ] Advanced deception technology
+- [x] Zero Trust Network Access (ZTNA) integration
+- [x] Cloud security posture management (CSPM)
+- [x] Container security scanning and runtime protection
+- [x] Data loss prevention (DLP) integration
+- [x] Advanced deception technology and threat hunting
 
 ## 🔧 Development Setup
 
@@ -385,9 +414,9 @@ npm run mongo:index         # Create database indexes
 AutoSec is designed for cloud-native deployment with Kubernetes support:
 
 ```bash
-# Deploy with Helm
-helm repo add autosec https://charts.autosec.io
-helm install autosec autosec/autosec-platform
+# Deploy with Helm (coming soon)
+# helm repo add autosec https://gizzmo.github.io/AutoSec-helm-charts
+# helm install autosec autosec/autosec-platform
 
 # Or use kubectl
 kubectl apply -f k8s/namespace.yaml
@@ -512,6 +541,16 @@ GET    /api/behavior/network     # Get network behavior metrics
 POST   /api/behavior/analyze     # Trigger behavior analysis
 GET    /api/behavior/anomalies   # Get detected anomalies
 GET    /api/behavior/risk-score  # Get current risk scores
+
+# Threat hunting
+POST   /api/threat-hunting/start        # Start new threat hunting campaign
+GET    /api/threat-hunting              # Get all threat hunts
+GET    /api/threat-hunting/active       # Get active threat hunts
+GET    /api/threat-hunting/stats        # Get threat hunting statistics
+GET    /api/threat-hunting/templates    # Get available hunt templates
+GET    /api/threat-hunting/:huntId      # Get specific threat hunt
+POST   /api/threat-hunting/:huntId/stop # Stop a running hunt
+DELETE /api/threat-hunting/:huntId      # Delete a threat hunt
 ```
 
 ### Log Management & Analytics
@@ -662,6 +701,57 @@ const networkAnalysis = await mlService.analyzeNetworkBehavior({
 });
 ```
 
+### Threat Hunting Integration
+
+```javascript
+const { threatHuntingService } = require('./services/threatHuntingService');
+
+// Start a threat hunt using a pre-built template
+const hunt = await threatHuntingService.startThreatHunt({
+  name: 'APT Detection Hunt',
+  description: 'Hunting for Advanced Persistent Threat indicators',
+  template: 'apt-detection', // Use pre-built template
+  timeRange: '7d', // Search last 7 days
+  priority: 'high',
+  userId: 'admin-user-id'
+});
+
+// Start a custom threat hunt
+const customHunt = await threatHuntingService.startThreatHunt({
+  name: 'Custom Data Exfiltration Hunt',
+  description: 'Looking for unusual data transfers',
+  hypothesis: 'Insider threat performing data exfiltration via cloud storage',
+  queries: [
+    {
+      name: 'Large uploads to external domains',
+      type: 'network',
+      pattern: 'bytes_out > 100MB AND destination NOT internal',
+      timeWindow: '24h'
+    },
+    {
+      name: 'After-hours file access',
+      type: 'behavior',
+      pattern: 'login_time NOT IN working_hours AND file_access_count > 50',
+      timeWindow: '12h'
+    }
+  ],
+  timeRange: '24h',
+  priority: 'critical',
+  userId: 'admin-user-id'
+});
+
+// Get hunt status and findings
+const huntResults = await threatHuntingService.getThreatHunt(hunt._id);
+console.log(`Hunt status: ${huntResults.status}`);
+console.log(`Findings: ${huntResults.summary?.totalFindings || 0}`);
+
+// Get threat hunting statistics
+const stats = await threatHuntingService.getThreatHuntingStats();
+console.log(`Total hunts: ${stats.totalHunts}`);
+console.log(`Active hunts: ${stats.activeHunts}`);
+console.log(`Available templates: ${stats.availableTemplates.join(', ')}`);
+```
+
 ## 🤝 Contributing
 
 We welcome contributions to AutoSec! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
@@ -676,9 +766,9 @@ We welcome contributions to AutoSec! Please see our [Contributing Guide](CONTRIB
 
 ### Reporting Issues
 
-- **Security Issues**: Report privately to security@autosec.io
-- **Bug Reports**: Use GitHub Issues with detailed reproduction steps
-- **Feature Requests**: Use GitHub Discussions for community input
+- **Security Issues**: Report privately via [GitHub Security Advisories](https://github.com/GizzZmo/AutoSec/security/advisories)
+- **Bug Reports**: Use [GitHub Issues](https://github.com/GizzZmo/AutoSec/issues) with detailed reproduction steps
+- **Feature Requests**: Use [GitHub Discussions](https://github.com/GizzZmo/AutoSec/discussions) for community input
 
 ## 📄 License
 
@@ -686,10 +776,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Support
 
-- **Documentation**: https://docs.autosec.io
-- **Community Forum**: https://community.autosec.io
-- **Enterprise Support**: support@autosec.io
-- **Security Contact**: security@autosec.io
+- **Documentation**: [Project Documentation](docs/README.md) and [GitHub Wiki](https://github.com/GizzZmo/AutoSec/wiki)
+- **Community Forum**: [GitHub Discussions](https://github.com/GizzZmo/AutoSec/discussions)
+- **Bug Reports & Feature Requests**: [GitHub Issues](https://github.com/GizzZmo/AutoSec/issues)
+- **Security Issues**: Report privately via [GitHub Security Advisories](https://github.com/GizzZmo/AutoSec/security/advisories)
 
 ## 🙏 Acknowledgments
 

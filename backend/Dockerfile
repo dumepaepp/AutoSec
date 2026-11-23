@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a parent image
-FROM node:20-alpine
+FROM node:24-alpine
 
 # Security: run as non-root user
 RUN addgroup -g 1001 -S appgroup && \
